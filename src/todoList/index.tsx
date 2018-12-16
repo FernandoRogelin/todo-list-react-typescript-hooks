@@ -5,20 +5,22 @@ import { Wrapper, Container, Tittle, Subtittle, Write, Input, Button } from './s
 
 
 export default function App() {
-  const [ words, setWords ] = useState<string>('');
-  const [ listWords, setListWords ] = useState<object>([]);
+  const [ state, setState ] = useState({
+    words: '',
+    listWords: ['']
+  })
 
   function handleChange(e: React.FormEvent) {
-    console.log(e.target);
-    // setState({ words: e.target.value });
+    const value = ((e.target) as any).value;
+
+    setState({ ...state, words: value });
   }
 
   function handleSubmit() {
-    console.log('clicando');
+    // setState([ ...state, listWords: state.words ]);
   }
 
-  console.log(words, setWords);
-  console.log(listWords, setListWords);
+  console.log(state);
   return (
     <Wrapper>
       <Container>
@@ -26,12 +28,10 @@ export default function App() {
           Todo List
           <Subtittle>Hooks and TypeScript</Subtittle>
         </Tittle>
-        <form onClick={handleSubmit}>
-          <Write>
-            <Input onChange={value => handleChange(value)} />
-            <Button type="submit">Add List</Button>
-          </Write>
-        </form>
+        <Write>
+          <Input onChange={value => handleChange(value)} />
+          <Button onClick={handleSubmit}>Add List</Button>
+        </Write>
       </Container>
     </Wrapper>
   );
