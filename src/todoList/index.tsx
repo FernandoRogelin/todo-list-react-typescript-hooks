@@ -7,7 +7,7 @@ import { Wrapper, Container, Tittle, Subtittle, Write, Input, Button } from './s
 export default function App() {
   const [ state, setState ] = useState({
     words: '',
-    listWords: ['']
+    listWords: []
   })
 
   function handleChange(e: React.FormEvent) {
